@@ -12,12 +12,13 @@ public class TeleOpTry extends LinearOpMode {
     private DcMotor frontRight;
     private DcMotor backLeft;
     private DcMotor backRight;
-    private DcMotor shooter;
-    private Servo stand;
+    //private DcMotor shooterLeft;
+    //private DcMotor shooterRight;
+    //private Servo stand;
 
-    private boolean flag;
+   // private boolean flag;
 
-    private double pose;
+   // private double pose;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,12 +28,13 @@ public class TeleOpTry extends LinearOpMode {
         backLeft = hardwareMap.get(DcMotor.class, "backLeft");
         backRight = hardwareMap.get(DcMotor.class, "backRight");
 
-        shooter = hardwareMap.get(DcMotor.class, "shooter");
-        stand = hardwareMap.get(Servo.class,"stand");
+       // shooterLeft = hardwareMap.get(DcMotor.class, "shooterLeft");
+       // shooterRight = hardwareMap.get(DcMotor.class, "shooterRight");
+       // stand = hardwareMap.get(Servo.class,"stand");
 
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-
+        //shooterLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         waitForStart();
@@ -57,16 +59,20 @@ public class TeleOpTry extends LinearOpMode {
             frontRight.setPower(frontRightPower);
             backRight.setPower(backRightPower);
 
-            if (gamepad1.a) {
-                shooter.setPower(Constant.shooterPower);
-            }
-            else shooter.setPower(0);
+         //   if (gamepad1.a) {
+          //      shooterLeft.setPower(Constant.shooterPower);
+          //      shooterRight.setPower(Constant.shooterPower);
+          //  }
+          //  else {
+            //  shooterLeft.setPower(0);
+            //  shooterRight.setPower(0);
+            //  }
 
-            if (gamepad1.b)stand.setPosition(0.5);
-            if (gamepad1.x) stand.setPosition(0);
+         //   if (gamepad1.b)stand.setPosition(0.5);
+         //   if (gamepad1.x) stand.setPosition(0);
 
-            if (gamepad1.y) {
-                flag = !flag;
+         //   if (gamepad1.y) {
+          //      flag = !flag;
             }
 
             //if(flag) servo.setPosition(1);
@@ -75,4 +81,4 @@ public class TeleOpTry extends LinearOpMode {
         }
         //finish
     }
-}
+

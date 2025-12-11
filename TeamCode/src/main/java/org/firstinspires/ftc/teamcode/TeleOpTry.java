@@ -12,8 +12,9 @@ public class TeleOpTry extends LinearOpMode {
     private DcMotor frontRight;
     private DcMotor backLeft;
     private DcMotor backRight;
-    //private DcMotor shooterLeft;
-    //private DcMotor shooterRight;
+    private DcMotor shooterLeft;
+    private DcMotor shooterRight;
+    private DcMotor intake;
     //private Servo stand;
 
    // private boolean flag;
@@ -27,14 +28,15 @@ public class TeleOpTry extends LinearOpMode {
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
         backLeft = hardwareMap.get(DcMotor.class, "backLeft");
         backRight = hardwareMap.get(DcMotor.class, "backRight");
-
-       // shooterLeft = hardwareMap.get(DcMotor.class, "shooterLeft");
-       // shooterRight = hardwareMap.get(DcMotor.class, "shooterRight");
+        shooterLeft = hardwareMap.get(DcMotor.class, "shooterLeft");
+        shooterRight = hardwareMap.get(DcMotor.class, "shooterRight");
+        intake = hardwareMap.get(DcMotor.class,"intake");
        // stand = hardwareMap.get(Servo.class,"stand");
 
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        //shooterLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        shooterRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        intake.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         waitForStart();
@@ -59,19 +61,22 @@ public class TeleOpTry extends LinearOpMode {
             frontRight.setPower(frontRightPower);
             backRight.setPower(backRightPower);
 
-         //   if (gamepad1.a) {
-          //      shooterLeft.setPower(Constant.shooterPower);
-          //      shooterRight.setPower(Constant.shooterPower);
-          //  }
-          //  else {
-            //  shooterLeft.setPower(0);
-            //  shooterRight.setPower(0);
-            //  }
+            if (gamepad1.a) {
+                shooterLeft.setPower(Constant.shooterPower);
+                shooterRight.setPower(Constant.shooterPower);
+            }
+            else {
+              shooterLeft.setPower(0);
+              shooterRight.setPower(0);
+              }
+            if(gamepad1.b)intake.setPower(Constant.intakePower);
+            else intake.setPower(0);
 
-         //   if (gamepad1.b)stand.setPosition(0.5);
-         //   if (gamepad1.x) stand.setPosition(0);
 
-         //   if (gamepad1.y) {
+            //  if (gamepad1.b)stand.setPosition(0.5);
+            //  if (gamepad1.x) stand.setPosition(0);
+
+            //   if (gamepad1.y) {
           //      flag = !flag;
             }
 

@@ -12,6 +12,10 @@ public class MotorTest extends LinearOpMode {
     private DcMotor backLeft;
     private DcMotor backRight;
 
+    private DcMotor shooterRight;
+    private DcMotor shooterLeft;
+    private DcMotor intake;
+
     @Override
     public void runOpMode() throws InterruptedException {
         // initialize
@@ -22,8 +26,12 @@ public class MotorTest extends LinearOpMode {
 
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        shooterRight = hardwareMap.get(DcMotor.class, "shooterRight");
+        shooterLeft = hardwareMap.get(DcMotor.class,"shooterLeft");
+        intake = hardwareMap.get(DcMotor.class,"intake");
 
-
+        shooterRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        intake.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
         while (opModeIsActive()) {
@@ -46,6 +54,16 @@ public class MotorTest extends LinearOpMode {
                 backRight.setPower(1);
             }
             else backRight.setPower(0);
+            if(gamepad1.a){
+                shooterRight.setPower(Constant.shooterPower);
+                shooterLeft.setPower(1);
+            }
+            else {
+                shooterRight.setPower(Constant.shooterPower);
+                shooterLeft.setPower(0);
+            }
+            if(gamepad1.b)intake.setPower(Constant.intakePower);
+            else intake.setPower(0);
         }
         //finish
     }
